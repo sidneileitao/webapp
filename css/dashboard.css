@@ -1,0 +1,27 @@
+.right-text {
+   text-align: right;
+ }
+
+ .left-text {
+   text-align: left;
+ }
+
+ .center-text {
+   text-align: center;
+ }
+
+ .large-font {
+   font-size: 14px;
+   font-family: Nunito, sans-serif;
+  }
+
+thead {
+   position: sticky;
+   top: 0;
+}
+
+th {
+   padding: 10px;
+   background-color: #f2f2f2;
+   border: 1px solid #000000;
+}
