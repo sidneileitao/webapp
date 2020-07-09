@@ -27,9 +27,19 @@ th {
 }
 
 @media (max-width: 767px) {
+  h5 {
+    font-size: 1.2rem;
+
+}
+
+
+@media (max-width: 767px) {
 td,
 th {
   height: 35px;
 }
+
+
+
 
 }
