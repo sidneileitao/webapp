@@ -60,7 +60,7 @@ function getPosicaoElemento( aMatriz , xElemento )
 function criarTabela(nomeDivdaTabela,matrizDadosTabela,nomeTabela)
 {
 
-  var textoTabela = '<table id="' + nomeTabela + '" class="striped responsive-table">';
+  var textoTabela = '<table id="' + nomeTabela + '" class="striped responsive-table table_padrao" >';
   
   textoTabela += '<thead>' + inserirLinhasTabela(matrizDadosTabela[0],"th") + '</thead><tbody>';
   

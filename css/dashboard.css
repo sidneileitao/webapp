@@ -29,17 +29,43 @@ th {
 @media (max-width: 767px) {
   h5 {
     font-size: 1.2rem;
-
 }
-
+}
 
 @media (max-width: 767px) {
 td,
 th {
   height: 35px;
+  border:none;
+}
 }
 
+.table_padrao 
+{
+  font-size:13px;
 
+}
 
+.table_padrao thead th{
+  background-color:   grey lighten-3;
+  border:none;
 
+}
+
+.StandardTable {
+  border: 1px solid #656565;
+  border-radius: 10px;
+  -moz-border-radius: 10px;
+  margin-left: auto;
+  margin-right: auto;
+  box-shadow: 10px 10px 5px #888888;
+  width: 300px;
+  margin-bottom: 15px;
+  border-spacing: 0;
+}
+
+.StandardTable thead {
+  border-radius: 10px;
+  -moz-border-radius: 10px;
+  border-radius: 5px;
 }
