@@ -77,9 +77,9 @@ function inserirLinhasTabela(dadosCelulas,tagTdTh)
 {
 
   var linhaComCelulas = '<tr>';
-  
+
   for ( var k = 0, valorCelula ; valorCelula = dadosCelulas[k++];) {
-    linhaComCelulas += '<' + tagTdTh + '>' + valorCelula + '</' +tagTdTh + '>';
+    linhaComCelulas += '<' + tagTdTh + ' >' + valorCelula + '</' +tagTdTh + '>';
   }
   
   linhaComCelulas += '</tr>';
@@ -87,6 +87,9 @@ function inserirLinhasTabela(dadosCelulas,tagTdTh)
   return linhaComCelulas;
 
 }
+
+
+
 
 //----------------------------
 function dataFormatada(data) {
@@ -102,3 +105,39 @@ dataFormatada.prototype.mesAno = function() {
     return ( 100 + this.mes).toString().substring( 1 , 3 ) + this.ano;
 }
 
+//--------------------
+function TabelaDados()
+{
+  this.colunas = [];
+  this.tiposColunas = [];  
+  this.linhas = [];  
+  this.adicionaColunas = adicionaColunas;
+  this.adicionaLinhas = adicionaLinhas;
+  this.criaTabela = criaTabela;
+}
+
+//----------------------------------
+function adicionaColunas( aColunas )
+{
+    for( var i = 0, coluna ; coluna = aColunas[i++];)
+    {
+      this.colunas.push(coluna[0]);
+      this.tiposColunas.push(coluna[1]);      
+    }
+}
+
+//--------------------------------
+function adicionaLinhas( aLinhas )
+{
+    for( var i = 0, linha ; linha = aLinhas[i++];)
+    {
+      this.linhas.push(linha);
+    }
+}
+
+//-------------------------------------
+function criaTabela(nomeDiv,nomeTabela)
+{
+
+  
+}
