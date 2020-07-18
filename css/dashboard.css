@@ -43,14 +43,21 @@ th {
 .table_padrao 
 {
   font-size:13px;
-  
 }
 
 
 .table_padrao thead th{
-  background-color:   grey lighten-3;
+  background-color:  #bdbdbd;
   border:none;
+  height: 35px;
+}
 
+tbody tr:hover {
+  background: yellow;
+}
+
+table.highlight>tbody>tr:hover {
+  background-color: rgba(194, 206, 23, 0.5) !important;
 }
 
 .StandardTable {
@@ -69,4 +76,15 @@ th {
   border-radius: 10px;
   -moz-border-radius: 10px;
   border-radius: 5px;
+}
+
+#myInput {
+  background-image: url('/css/searchicon.png'); /* Add a search icon to input */
+  background-position: 10px 12px; /* Position the search icon */
+  background-repeat: no-repeat; /* Do not repeat the icon image */
+  /*width: 100%; /* Full-width */
+  font-size: 16px; /* Increase font-size */
+  padding: 12px 20px 12px 40px; /* Add some padding */
+  border: 1px solid #ddd; /* Add a grey border */
+  margin-bottom: 12px; /* Add some space below the input */
 }

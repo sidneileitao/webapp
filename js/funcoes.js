@@ -2,6 +2,54 @@ $(document).ready(function(){
   $('select').formSelect();
 });
 
+
+
+function myFunction() {
+  // Declare variables
+  var input, filter, table, tr, td, i, txtValue;
+  input = document.getElementById("myInput");
+  filter = input.value.toUpperCase();
+  table = document.getElementById("tabelaPagamentos");
+  tr = table.getElementsByTagName("tr");
+
+  // Loop through all table rows, and hide those who don't match the search query
+  for (i = 0; i < tr.length; i++) {
+    td = tr[i].getElementsByTagName("td")[7];
+    if (td) {
+      txtValue = td.textContent || td.innerText;
+      if (txtValue.toUpperCase().indexOf(filter) > -1) {
+        tr[i].style.display = "";
+      } else {
+        tr[i].style.display = "none";
+      }
+    }
+  }
+}
+
+function filtrarLinhas(opcaoSelecionada) {
+  // Declare variables
+  var input, filter, table, tr, td, i, txtValue;
+  //input = document.getElementById("myInput");
+  input = opcaoSelecionada; //document.getElementById("myInput");
+  filter = input.toUpperCase();
+  table = document.getElementById("tabelaPagamentos");
+  tr = table.getElementsByTagName("tr");
+
+  // Loop through all table rows, and hide those who don't match the search query
+  for (i = 0; i < tr.length; i++) {
+    td = tr[i].getElementsByTagName("td")[7];
+    if (td) {
+      txtValue = td.textContent || td.innerText;
+      if ( (txtValue.toUpperCase().indexOf(filter) > -1) || filter == "TODOS") {
+        tr[i].style.display = "";
+      } else {
+        tr[i].style.display = "none";
+      }
+    }
+  }
+}
+
+
 //------------------------------------------------
 function getPosicaoElemento( aMatriz , xElemento )
 {
@@ -56,39 +104,36 @@ function getPosicaoElemento( aMatriz , xElemento )
 }
 
 
-//----------------------------------------------------------------
-function criarTabela(nomeDivdaTabela,matrizDadosTabela,nomeTabela)
-{
-
-  var textoTabela = '<table id="' + nomeTabela + '" class="striped responsive-table table_padrao" >';
-  
-  textoTabela += '<thead>' + inserirLinhasTabela(matrizDadosTabela[0],"th") + '</thead><tbody>';
-  
-  for( var i = 1 , linhaValores ; linhaValores = matrizDadosTabela[i++];){
-    textoTabela += inserirLinhasTabela(linhaValores,"td");
-  }
-
-  var idTableDiv = document.getElementById(nomeDivdaTabela);
-  idTableDiv.innerHTML = textoTabela + '</tbody></table>';
-}
-
 //------------------------------------------------
 function inserirLinhasTabela(dadosCelulas,tagTdTh)
 {
 
   var linhaComCelulas = '<tr>';
+  var cFormatoDado = " ";
+  
+  for ( var k = 0, len = dadosCelulas.length; k < len; k++)
+  {
+    
+    if(this.tiposColunas[k] == "number")
+    {
+      cFormatoDado = ' class="right-text"' ;
+    }
+    else{
+      cFormatoDado = ' class="left-text"' ;
+    };
+   
+    if( tagTdTh == "td" ){
+      cFormatoDado += ' id="' + this.colunas[k] + '"' ;
+    }
 
-  for ( var k = 0, valorCelula ; valorCelula = dadosCelulas[k++];) {
-    linhaComCelulas += '<' + tagTdTh + ' >' + valorCelula + '</' +tagTdTh + '>';
+    linhaComCelulas += '<' + tagTdTh + cFormatoDado + ' >' + dadosCelulas[k] + '</' +tagTdTh + '>';
+    
   }
   
   linhaComCelulas += '</tr>';
-  
   return linhaComCelulas;
 
 }
-
-
 
 
 //----------------------------
@@ -111,33 +156,55 @@ function TabelaDados()
   this.colunas = [];
   this.tiposColunas = [];  
   this.linhas = [];  
-  this.adicionaColunas = adicionaColunas;
-  this.adicionaLinhas = adicionaLinhas;
-  this.criaTabela = criaTabela;
-}
-
-//----------------------------------
-function adicionaColunas( aColunas )
-{
+  this.formatoColuna = [];
+ 
+  this.adicionarColunas = function(aColunas)
+  {
     for( var i = 0, coluna ; coluna = aColunas[i++];)
     {
       this.colunas.push(coluna[0]);
       this.tiposColunas.push(coluna[1]);      
     }
-}
-
-//--------------------------------
-function adicionaLinhas( aLinhas )
-{
+  }
+ 
+  this.adicionarLinhas = function(aLinhas)
+  {
     for( var i = 0, linha ; linha = aLinhas[i++];)
     {
       this.linhas.push(linha);
     }
+  }
+
+  this.criarTabela = criarTabela;
+
+  this.inserirLinhasTabela = inserirLinhasTabela;
 }
 
-//-------------------------------------
-function criaTabela(nomeDiv,nomeTabela)
-{
 
+//--------------------------------------
+function criarTabela(nomeDiv,nomeTabela)
+{
+  var textoTabela = '<table id="' + nomeTabela + '" class="highlight responsive-table table_padrao" >';
+  var formatacaoDado = [];
   
+  this.nomeTabela = nomeTabela;
+
+  textoTabela += '<thead>' + this.inserirLinhasTabela(this.colunas,"th") + '</thead><tbody>';
+  
+  for( var i = 0 , dados ; dados = this.linhas[i++];){
+    textoTabela += this.inserirLinhasTabela( dados,"td");
+  }
+
+  textoTabela += '</tbody></table>';
+  var idTableDiv = document.getElementById(nomeDiv);
+
+  idTableDiv.innerHTML = textoTabela ;
+
+  this.formataLinha = function(nLinha,classeCss)
+  {
+    $("#" + this.nomeTabela + " tr:nth-child(" + nLinha +")" ).css(classeCss);
+    
+        
+  }
+
 }
