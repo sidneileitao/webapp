@@ -43,11 +43,14 @@ th {
 .table_padrao 
 {
   font-size:13px;
+  margin-top:15px;
+
 }
 
 
 .table_padrao thead th{
-  background-color:  #bdbdbd;
+  /*background-color:  #bdbdbd;*/
+  background-color:#EEEFF1;
   border:none;
   height: 35px;
 }
@@ -87,4 +90,34 @@ table.highlight>tbody>tr:hover {
   padding: 12px 20px 12px 40px; /* Add some padding */
   border: 1px solid #ddd; /* Add a grey border */
   margin-bottom: 12px; /* Add some space below the input */
+}
+
+.cardPagamento {
+margin-right: 20px;
+padding-top:15px;
+background-color: white;
+box-shadow: 3px 3px 5px rgba(0, 0, 0, 0.5); 
+}
+
+@media only screen and (min-width: 600px) {
+  .cardPagamento {
+    height:300px;
+  margin-right: 20px;
+  padding-top:15px;
+  background-color: white;
+  box-shadow: 3px 3px 5px rgba(0, 0, 0, 0.5); 
+  }
+}
+
+
+.select-dropdown{
+  font-family: 'Montserrat',sans-serif;
+  color: #757575;
+  font-size: 13px;
+  
+}
+
+ul.dropdown-content.select-dropdown li span {
+  color: #757575; 
+  font-size: 14px;
 }
