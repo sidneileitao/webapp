@@ -94,6 +94,13 @@ table.highlight>tbody>tr:hover {
   margin-bottom: 12px; /* Add some space below the input */
 }
 
+.cardGraficos {  
+  box-shadow: 3px 3px 5px rgba(0, 0, 0, 0.5);
+  padding-left: 10;
+  margin-bottom: 15px; 
+  }
+
+
 .cardPagamento {
 margin-right: 20px;
 padding-top:15px;
@@ -109,6 +116,15 @@ box-shadow: 3px 3px 5px rgba(0, 0, 0, 0.5);
   background-color: white;
   box-shadow: 3px 3px 5px rgba(0, 0, 0, 0.5); 
   }
+
+  .cardGraficos {
+    box-shadow: 3px 3px 5px rgba(0, 0, 0, 0.5);
+    margin-right: 20px;
+    /*padding-top: 15px;  */
+    
+    
+  }
+
 }
 
 
@@ -124,10 +140,5 @@ ul.dropdown-content.select-dropdown li span {
   font-size: 14px;
 }
 
-.cardGraficos {  
-  box-shadow: 3px 3px 5px rgba(0, 0, 0, 0.5); 
-  
-  /*padding: 20px;*/
-  padding-left: 0;
-  margin-right: 20px;  
-  }
+
+ 
