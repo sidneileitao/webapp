@@ -2,8 +2,22 @@ $(document).ready(function(){
   $('select').formSelect();
 });
 
+//------------------------------------
+function ordenaMatriz(a, b , posicao)
+{
+  if (a[posicao] < b[posicao]) {
+    return -1;
+  }
+  if (a[posicao] > b[posicao]) {
+    return 1;
+  }
+  else
+  { 
+    return 0;
+  }
+}
 
-
+//---------------------
 function myFunction() {
   // Declare variables
   var input, filter, table, tr, td, i, txtValue;
@@ -26,6 +40,7 @@ function myFunction() {
   }
 }
 
+//-------------------------------------------------
 function filtrarLinhas(opcaoSelecionada,nColuna) {
   // Declare variables
   var input, filter, table, tr, td, i, txtValue;
@@ -208,3 +223,39 @@ function criarTabela(nomeDiv,nomeTabela)
   }
 
 }
+
+//--------------------------------------------------------
+function pegaPosicaoElementoMatriz(aMatriz,elemento,valor)
+{
+    var dados = new Object();
+        dados.posicao = aMatriz.length;
+        dados.valor = valor;
+        
+    var nPosicao = getPosicaoElemento(aMatriz,elemento) ;
+    
+    if( nPosicao != null )
+    {
+        dados.posicao = nPosicao;
+        dados.valor = aMatriz[nPosicao][1] + valor;
+    }
+    return dados;
+}
+
+ //------------------------------------------------------------
+ function criaGrafico(aColunas,dados,options,aAnotation)
+ {
+     var dataTable = new google.visualization.DataTable();
+     for(var i = 0 , coluna ; coluna = aColunas[i++];)
+     {
+       dataTable.addColumn(coluna[0],coluna[1]);
+     }
+
+     if( aAnotation != null)
+     {
+      dataTable.addColumn(aAnotation);
+     }
+
+     dataTable.addRows( dados );
+
+     return dataTable;
+ }
