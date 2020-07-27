@@ -319,9 +319,15 @@ function pegaPosicaoElementoMatriz(aMatriz,elemento,valor)
         {
           let grafico = new google.visualization.PieChart(document.getElementById(nomeDiv));
           options.chartArea= {'width': '60%', 'height': '70%',backgroundColor:corFundoGrafico};
-          options.legend = 'bottom';
           options.pieHole = 0.4;
           options.fontName = nomeFonte;
+          options.pieSliceText = 'value-and-percentage';
+          options.sliceVisibilityThreshold = 0;          
+          options.legend = {
+                              position: 'labeled',
+                              labeledValueText: 'both',
+                              textStyle: {color: 'white',fontSize: 14}
+          };
           grafico.draw(dataTable,options);
         }
         else if(tipoGrafico=="column")
