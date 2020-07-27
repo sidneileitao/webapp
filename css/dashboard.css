@@ -140,5 +140,9 @@ ul.dropdown-content.select-dropdown li span {
   font-size: 14px;
 }
 
+#divGraficoCirurgiasMes,#divGraficoFaturamentoMes,#divGraficoCirurgiasHospital,#divGraficoCirurgiasConvenio svg {
+  background: white;
+  max-width: 556px;
 
- 
+
+}

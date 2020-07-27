@@ -218,8 +218,7 @@ function criarTabela(nomeDiv,nomeTabela)
   this.formataLinha = function(nLinha,classeCss)
   {
     $("#" + this.nomeTabela + " tr:nth-child(" + nLinha +")" ).css(classeCss);
-    
-        
+            
   }
 
 }
@@ -230,22 +229,24 @@ function pegaPosicaoElementoMatriz(aMatriz,elemento,valor)
     var dados = new Object();
         dados.posicao = aMatriz.length;
         dados.valor = valor;
+        dados.chave = elemento;
         
     var nPosicao = getPosicaoElemento(aMatriz,elemento) ;
     
     if( nPosicao != null )
     {
-        dados.posicao = nPosicao;
-        dados.valor = aMatriz[nPosicao][1] + valor;
+      dados.chave = elemento;
+      dados.posicao = nPosicao;
+      dados.valor = aMatriz[nPosicao][1] + valor;
     }
     return dados;
 }
 
- //------------------------------------------------------------
- function criaGrafico(aColunas,dados,options,aAnotation)
+ //-------------------------------------------------
+ function criaGrafico(objDados,aAnotation)
  {
-     var dataTable = new google.visualization.DataTable();
-     for(var i = 0 , coluna ; coluna = aColunas[i++];)
+     let dataTable = new google.visualization.DataTable();
+     for(var i = 0 , coluna ; coluna = objDados.colunas[i++];)
      {
        dataTable.addColumn(coluna[0],coluna[1]);
      }
@@ -255,7 +256,84 @@ function pegaPosicaoElementoMatriz(aMatriz,elemento,valor)
       dataTable.addColumn(aAnotation);
      }
 
-     dataTable.addRows( dados );
+     dataTable.addRows( objDados.dados );
 
-     return dataTable;
+     this.desenhaGrafico = function(tipoGrafico,options,nomeDiv)
+     {
+        /*
+        let corFundoDiv = "white";
+        let corFundoGrafico = "white";
+        let corFonteLabels = "black";
+        let nomeFonte = "Montserrat";
+        let corFonteTitulo = "blue";
+        let corEtiquetas = "blue";
+        let coresGraficos = ["#3366CC", "#0d47a1", "#1a237e", 'green', 'yellow', 'gray'];
+        */
+        
+        let corFundoDiv = "#4B7A87";
+        let corFundoGrafico = "#1F5A6A";
+        let corFonteLabels = "white";
+        let nomeFonte = "Montserrat";
+        let corFonteTitulo = "white";
+        let corEtiquetas = "white";
+        let coresGraficos = ["#3366CC", "#0d47a1", "#1a237e", 'green', 'yellow', 'gray'];
+        let tamanhoFonteEtiquetas = 12;
+        let cssOcultarGrid = { gridlines:{color: "none"},textPosition:"none"};
+        let cssExibirGrid = { gridlines:{color:corFundoGrafico }, textStyle: {fontName: nomeFonte,color: corFonteLabels,fontSize:tamanhoFonteEtiquetas}}
+        
+        let tamanhoFonteEtiquetasBarras = tamanhoFonteEtiquetas;
+        if(dataTable.getNumberOfRows()>10)
+        {
+          tamanhoFonteEtiquetasBarras=8;
+        }
+
+        options.title = objDados.tituloGrafico;
+        options.backgroundColor=corFundoDiv;
+        options.legend = 'none';
+        options.annotations = { textStyle: {color:corEtiquetas, fontName: nomeFonte,fontSize: 12}};
+        options.titleTextStyle = { color: corFonteTitulo, fontName: nomeFonte,fontSize: 18, bold:'false', titlePosition:'none'};
+        options.width ='90%';
+        options.height = 400;
+        options.colors = coresGraficos;
+        options.chartArea = {'width': '90%', 'height': '70%',backgroundColor:corFundoGrafico};
+        
+        if(tipoGrafico=="line")
+        {
+          let grafico = new google.visualization.LineChart(document.getElementById(nomeDiv));
+          options.pointSize = 5;
+          options.hAxis = { direction:1, slantedText:true, slantedTextAngle:45,textStyle: {color:corEtiquetas,fontName: nomeFonte}};
+          options.vAxis = cssOcultarGrid;
+          grafico.draw(dataTable,options);
+        }
+        else if(tipoGrafico=="bar")
+        {
+          let grafico = new google.visualization.BarChart(document.getElementById(nomeDiv));
+          options.vAxis = cssExibirGrid;
+          options.hAxis = cssOcultarGrid;
+          options.chartArea= {'width': '72%', "height": "80%",backgroundColor:corFundoGrafico,"left": "25%", "top": "3%"};
+          options.vAxis.textStyle.fontSize = tamanhoFonteEtiquetasBarras ;
+          options.vAxis.textPosition='out';
+          grafico.draw(dataTable,options);
+        }
+        else if(tipoGrafico=="pie")
+        {
+          let grafico = new google.visualization.PieChart(document.getElementById(nomeDiv));
+          options.chartArea= {'width': '60%', 'height': '70%',backgroundColor:corFundoGrafico};
+          options.legend = 'bottom';
+          options.pieHole = 0.4;
+          options.fontName = nomeFonte;
+          grafico.draw(dataTable,options);
+        }
+        else if(tipoGrafico=="column")
+        {
+          let grafico = new google.visualization.ColumnChart(document.getElementById(nomeDiv));
+          options.vAxis = cssOcultarGrid;
+          options.hAxis = cssExibirGrid;
+          options.chartArea = {'width': '80%', 'height': '70%',backgroundColor:corFundoGrafico};
+          options.legend = 'none';
+          grafico.draw(dataTable,options);
+        }
+
+      }
+
  }
