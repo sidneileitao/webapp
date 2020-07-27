@@ -324,7 +324,7 @@ function pegaPosicaoElementoMatriz(aMatriz,elemento,valor)
           options.pieSliceText = 'value-and-percentage';
           options.sliceVisibilityThreshold = 0;          
           options.legend = {
-                              position: 'labeled',
+                              position: 'bottom',
                               labeledValueText: 'both',
                               textStyle: {color: 'white',fontSize: 14}
           };
