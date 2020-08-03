@@ -258,6 +258,8 @@ function pegaPosicaoElementoMatriz(aMatriz,elemento,valor)
 
      dataTable.addRows( objDados.dados );
 
+     this.optios = 
+
      this.desenhaGrafico = function(tipoGrafico,options,nomeDiv)
      {
         /*
@@ -286,7 +288,7 @@ function pegaPosicaoElementoMatriz(aMatriz,elemento,valor)
         {
           tamanhoFonteEtiquetasBarras=8;
         }
-
+        
         options.title = objDados.tituloGrafico;
         options.backgroundColor=corFundoDiv;
         options.legend = 'none';
@@ -304,13 +306,14 @@ function pegaPosicaoElementoMatriz(aMatriz,elemento,valor)
           options.hAxis = { direction:1, slantedText:true, slantedTextAngle:45,textStyle: {color:corEtiquetas,fontName: nomeFonte}};
           options.vAxis = cssOcultarGrid;
           grafico.draw(dataTable,options);
+
         }
         else if(tipoGrafico=="bar")
         {
           let grafico = new google.visualization.BarChart(document.getElementById(nomeDiv));
           options.vAxis = cssExibirGrid;
           options.hAxis = cssOcultarGrid;
-          options.chartArea= {'width': '72%', "height": "80%",backgroundColor:corFundoGrafico,"left": "25%", "top": "3%"};
+          options.chartArea= {'width': '70%', "height": "80%",backgroundColor:corFundoGrafico,"left": "25%", "top": "15%"};
           options.vAxis.textStyle.fontSize = tamanhoFonteEtiquetasBarras ;
           options.vAxis.textPosition='out';
           grafico.draw(dataTable,options);

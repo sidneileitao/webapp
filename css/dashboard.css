@@ -94,6 +94,7 @@ table.highlight>tbody>tr:hover {
   margin-bottom: 12px; /* Add some space below the input */
 }
 
+
 .cardGraficos {  
   box-shadow: 3px 3px 5px rgba(0, 0, 0, 0.5);
   padding-left: 10;
@@ -122,11 +123,9 @@ box-shadow: 3px 3px 5px rgba(0, 0, 0, 0.5);
     margin-right: 20px;
     /*padding-top: 15px;  */
     
-    
   }
 
 }
-
 
 .select-dropdown{
   font-family: 'Montserrat',sans-serif;
@@ -140,9 +139,7 @@ ul.dropdown-content.select-dropdown li span {
   font-size: 14px;
 }
 
-#divGraficoCirurgiasMes,#divGraficoFaturamentoMes,#divGraficoCirurgiasHospital,#divGraficoCirurgiasConvenio svg {
+#divGraficoCirurgiasMes,#divGraficoFaturamentoMes,#divGraficoCirurgiasHospital,#divGraficoCirurgiasConvenio,#divGraficoCirurgiasProcedimento,#divGraficoCirurgiasGenero svg {
   background: white;
-  max-width: 556px;
-
-
+  max-width: 621px;
 }
