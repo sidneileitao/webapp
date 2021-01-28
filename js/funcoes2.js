@@ -1,16 +1,3 @@
-//---------------------
-function get_selected()
-{
-  var data = alimentaListaMeses();
-  var Options="";
-  $.each(data, function(i, val){ 
-    Options=Options+"<option value='"+val.id+"'>"+val.name+"</option>";
-  });
-  $('#listaMeses').empty();
-  $('#listaMeses').append(Options);
-  $("#listaMeses").formSelect();
-} 
-
 //------------------------------------
 function ordenaMatriz(a, b , posicao)
 {
@@ -159,6 +146,7 @@ function inserirLinhasTabela(dadosCelulas,tagTdTh)
 
 }
 
+
 //----------------------------
 function dataFormatada(data) {
     this.ano = data.getFullYear();
@@ -208,6 +196,7 @@ function TabelaDados()
 function criarTabela(nomeDiv,nomeTabela)
 {
   var textoTabela = '<table id="' + nomeTabela + '" class="highlight responsive-table table_padrao" >';
+  
   var formatacaoDado = [];
   
   this.nomeTabela = nomeTabela;
@@ -226,20 +215,11 @@ function criarTabela(nomeDiv,nomeTabela)
   this.formataLinha = function(nLinha,classeCss)
   {
     //$("#" + this.nomeTabela + " tr:nth-child(" + nLinha +")" ).css(classeCss);
-    
-    var table = document.getElementById(nomeTabela);   
-
+      
+    var table = document.getElementById(this.nomeTabela);   
     var rows = table.getElementsByTagName("tr");  
     rows[nLinha].className = classeCss;
     
-    //rows[nLinha].addClass('linhaTotal'); 
-    
-    //for (i = 0; i < tBody.rows[0].cells.length; i++) {
-        //let valorTD = tBody.rows[nLinha].cells[i].css(classeCss);
-        //tBody.rows[nLinha].cells[i].addClass('linhaTotal') ;//= parseFloat(valorTD).toLocaleString('pt-BR',{ maximumFractionDigits: 2,minimumFractionDigits: 2 })
-   // }
-
-
   }
 
   this.FormataColuna = function(tabela,ncoluna)
